@@ -1,0 +1,28 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: quarkus-keda-scaledobject
+spec:
+  scaleTargetRef:
+    apiVersion:    apps/v1
+    kind:          Deployment
+    name:          quarkus-keda
+  pollingInterval:  10
+  cooldownPeriod:   300
+  minReplicaCount:  1
+  maxReplicaCount:  6
+  fallback:
+    failureThreshold: 3
+    replicas: 1
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+        namespace: project-100
+        metricName: http_server_requests_seconds
+        query: sum(rate(http_server_requests_seconds_count{kubernetes_name="quarkus-keda-svc"}[1m]))
+        threshold: '1'
+        ignoreNullValues: "true"
+        authModes: "bearer"
+      authenticationRef:
+        name: quarkus-keda-trigger-auth-prometheus

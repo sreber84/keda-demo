@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkus-keda
+spec:
+  selector:
+    matchLabels:
+      app: quarkus-keda
+  template:
+    metadata:
+      labels:
+        app: quarkus-keda
+    spec:
+      containers:
+      - name: quarkus
+        image: quay.io/rhn_support_sreber/quarkus-micrometer:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "500m"
+            memory: 700Mi
+          requests:
+            cpu: "500m"
+            memory: 700Mi
