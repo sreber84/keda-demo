@@ -1,0 +1,12 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: quarkus-app-trigger
+spec:
+  secretTargetRef: 
+  - parameter: bearerToken 
+    name: keda-token-sdq6q
+    key: token 
+  - parameter: ca
+    name: keda-token-sdq6q
+    key: ca.crt

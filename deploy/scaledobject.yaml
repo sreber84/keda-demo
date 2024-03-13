@@ -1,12 +1,12 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: quarkus-keda-scaledobject
+  name: quarkus-app-scaledobject
 spec:
   scaleTargetRef:
     apiVersion:    apps/v1
     kind:          Deployment
-    name:          quarkus-keda
+    name:          quarkus-app
   pollingInterval:  10
   cooldownPeriod:   300
   minReplicaCount:  1
@@ -25,4 +25,4 @@ spec:
         ignoreNullValues: "true"
         authModes: "bearer"
       authenticationRef:
-        name: quarkus-keda-trigger-auth-prometheus
+        name: quarkus-app-trigger
