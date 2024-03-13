@@ -17,10 +17,10 @@ spec:
   triggers:
     - type: prometheus
       metadata:
-        serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+        serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
         namespace: project-100
-        metricName: http_server_requests_seconds
-        query: sum(rate(http_server_requests_seconds_count{kubernetes_name="quarkus-keda-svc"}[1m]))
+        metricName: http_server_requests_seconds_count
+        query: sum(rate(http_server_requests_seconds_count{job="quarkus-app"}[1m]))
         threshold: '1'
         ignoreNullValues: "true"
         authModes: "bearer"
