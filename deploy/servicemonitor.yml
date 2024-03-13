@@ -1,14 +1,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  creationTimestamp: "2024-03-13T13:47:56Z"
-  generation: 2
   labels:
     k8s-app: quarkus-app
   name: quarkus-app
   namespace: project-100
-  resourceVersion: "161951"
-  uid: 1a8c94f0-d74a-4850-b055-1d676cb6fcf4
 spec:
   endpoints:
   - interval: 30s
