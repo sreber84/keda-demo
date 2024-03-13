@@ -2,13 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: quarkus-keda
-    app.kubernetes.io/component: quarkus-keda
-    app.kubernetes.io/instance: quarkus-keda
-    app.kubernetes.io/name: quarkus-keda
-    app.kubernetes.io/part-of: quarkus-keda
+    app: quarkus-app
+    app.kubernetes.io/component: quarkus-app
+    app.kubernetes.io/instance: quarkus-app
+    app.kubernetes.io/name: quarkus-app
+    app.kubernetes.io/part-of: quarkus-app
     app.openshift.io/runtime-version: latest
-  name: quarkus-keda
+  name: quarkus-app
   namespace: project-100
 spec:
   port:
@@ -18,6 +18,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: quarkus-keda-svc
+    name: quarkus-app
     weight: 100
   wildcardPolicy: None

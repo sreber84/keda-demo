@@ -1,16 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: quarkus-keda-svc
-  annotations:
-    prometheus.io/path: "/q/metrics"
-    prometheus.io/port: "8080"
-    prometheus.io/scrape: "true"
+  labels:
+    app: quarkus-app
+    app.kubernetes.io/component: quarkus-app
+    app.kubernetes.io/instance: quarkus-app
+    app.kubernetes.io/name: quarkus-app
+    app.kubernetes.io/part-of: quarkus-app
+    app.openshift.io/runtime-version: latest
+  name: quarkus-app
+  namespace: project-100
 spec:
-  type: ClusterIP
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
-    - name: http
-      port: 8080
-      targetPort: 8080
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    app: quarkus-keda
+    app: quarkus-app
+    deployment: quarkus-app
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,9 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  labels:
-    k8s-app: quarkus-keda
-  name: quarkus-keda
+  name: quarkus-app
   namespace: project-100
 spec:
   endpoints:
@@ -13,4 +11,5 @@ spec:
     scheme: http
   selector:
     matchLabels:
-      app-with-metrics: 'quarkus-keda'
+      app: quarkus-app
+      deployment: quarkus-app
