@@ -18,6 +18,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: quarkus-keda
+    name: quarkus-keda-svc
     weight: 100
   wildcardPolicy: None
